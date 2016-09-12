@@ -19,8 +19,13 @@ if (isset($_POST['submit']) && $_POST['submit'] == "login")
         if ($num > 0)
         {
             $row = mysqli_fetch_array($result);
-            echo $row[0];
+
+            setcookie('username', $user);
+            setcookie('password', $pwd);
+            //echo $row[0];
+            echo $_COOKIE['login'];
             mysqli_free_result($result);
+
         }
         else{
             echo "<script>alert('Error found in username or password');history.go(-1);</script>";
