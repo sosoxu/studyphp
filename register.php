@@ -5,5 +5,5 @@
     <br/>
     Confirm:<input type="password" name="confirm"/>
     <br/>
-    <input type="Submit" name="Submit" value="Register"/>
+    <input type="submit" name="submit" value="register"/>
 </form>

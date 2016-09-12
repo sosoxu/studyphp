@@ -5,23 +5,25 @@ if (isset($_POST['submit']) && $_POST['submit'] == "login")
     $pwd = $_POST['password'];
     if (empty($user) || empty($pwd))
     {
-        echo "<script>alert(\"Please input user or password\");history.go(-1);</script>"
+        echo "<script>alert(\"Please input user or password\");history.go(-1);</script>";
     }
     else
     {
-        mysqli_connect('locahost', 'root', 'admin');
-        mysqli_select('studyphp');
-        mysqli_query("set names 'utf-8'");
-        $sql = "SELECT username, password FROM user WHERE usrnane='$user' AND password='$pwd'";
-        $result = mysqli_query($sql);
+        $mysqli = mysqli_connect('localhost', 'root', 'root', 'studyphp');
+        //mysqli_select_db('studyphp');
+        //mysqli_query("set names 'utf-8'");
+        $sql = "SELECT username,password FROM user WHERE username='$user' AND password='$pwd'";
+        $result = mysqli_query($mysqli, $sql);
+        //echo $result;
         $num = mysqli_num_rows($result);
-        if ($num)
+        if ($num > 0)
         {
             $row = mysqli_fetch_array($result);
             echo $row[0];
+            mysqli_free_result($result);
         }
         else{
-            echo "<script>alert('Error found in username or password');history.go(-1);</script>"
+            echo "<script>alert('Error found in username or password');history.go(-1);</script>";
         }
     }
 }
