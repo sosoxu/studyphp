@@ -8,6 +8,7 @@
 //获取登录信息
 $islogin = false;
 $user = 'aaa';
+
 /*
 if ($islogin)
 {
