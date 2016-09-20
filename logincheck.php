@@ -20,11 +20,15 @@ if (isset($_POST['submit']) && $_POST['submit'] == "login")
         {
             $row = mysqli_fetch_array($result);
 
+            //$_SESSION[]
+            $usermd5 = md5($user);
             setcookie('username', $user);
-            setcookie('password', $pwd);
+            setcookie('md5', $usermd5);
+            //setcookie('password', $pwd);
             //echo $row[0];
-            echo $_COOKIE['login'];
+            //echo $_COOKIE['login'];
             mysqli_free_result($result);
+            echo "<a href=\"home.php\">home</a>";
 
         }
         else{
