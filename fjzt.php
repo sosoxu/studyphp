@@ -21,6 +21,7 @@ define("FJZTDATE", 'ztdate');
 
 class FjItem
 {
+    var $uid;
     var $user;
     var $sucNo;
     var $rate;
@@ -34,6 +35,7 @@ class FjItem
     var $ztdate;
     public function __construct($data = array())
     {
+        $this->uid = 0;
         $this->user = isset($data[FJUSER]) ? $data[FJUSER] : 'test';
         $this->sucNo = isset($data[FJSUCNO]) ? $data[FJSUCNO] : 0;
         $this->rate = isset($data[FJRATE]) ? $data[FJRATE] : 0;
@@ -46,6 +48,33 @@ class FjItem
         $this->ztno = isset($data[FJZTNO]) ? $data[FJZTNO] : 0;
         $this->ztdate = isset($data[FJZTDATE]) ? $data[FJZTDATE] : '';
     }
+
+    public function buildItem($data = array())
+    {
+        $cnt = count($data);
+        if ($cnt == 12)
+        {
+            $i = 0;
+            $this->user = $data[++$i];
+            $this->sucNo = (int)$data[++$i];
+            $this->rate = (float)$data[++$i];
+            $this->stock = $data[++$i];
+            $this->reason = $data[++$i];
+            $this->time = $data[++$i];
+            $this->fjprice = $data[++$i];
+            $this->curprice = $data[++$i];
+            $this->fudu = $data[++$i];
+            $this->ztno = (int)$data[++$i];
+            $this->ztdate = $data[++$i];
+        }
+    }
+
+    public function __toString()
+    {
+        // TODO: Implement __toString() method.
+        return $this->user.":".$this->stock.":".$this->reason;
+    }
+
 }
 
 class FjItemDBOper
@@ -79,18 +108,23 @@ class FjItemDBOper
     {
         $items = array();
         $results = mysqli_query($this->mysqli, 'SHOW TABLES');
-        $row = mysqli_fetch_row($results);
+        //$row = mysqli_fetch_row($results);
         $results = mysqli_query($this->mysqli, $sql);
-        $num = mysqli_num_rows($results);
+        //$num = mysqli_num_rows($results);
         //$result = mysqli_use_result($this->mysqli);
         if ($results) {
             while ($row = mysqli_fetch_row($results)) {
-                echo count($row);
-                echo $row[0].":".$row[1];
-                echo "<br>";
+                //echo count($row);
+                //echo $row[0].":".$row[1].$row[FJUSER];
+                //$item = new FjItem();
+                //$item->buildItem($row);
+                //echo $item;
+                //echo "<br>";
+                //$items[] = $item;
+                $items[] = $row;
             }
+            mysqli_free_result($results);
         }
-        echo $result ? "true" : "false";
         /*
         {
             $res = mysqli_use_result($this->mysqli);
@@ -100,9 +134,38 @@ class FjItemDBOper
             }
         }
         */
+        return $items;
+    }
+
+    public function queryFullItem()
+    {
+        $selectsql = "select * from fjzt limit 10;";
+        $rows = $this->query($selectsql);
+        $items = array();
+        foreach($rows as $row)
+        {
+            $fjitem = new FjItem();
+            $fjitem->buildItem($row);
+            $items[] = $fjitem;
+        }
+        return $items;
+    }
+
+    public function queryTotalCount()
+    {
+        $sql = "SELECT count(*) FROM fjzt;";
+        $result = mysqli_query($this->mysqli, $sql);
+        $row = mysqli_fetch_row($result);
+        echo $row;
+        return $row;
     }
 }
 
-$fjdboper = new FjItemDBOper(array());
-$selectsql = "select user,stock from fjzt limit 10;";
-$fjdboper->query($selectsql);
+function testfjzt()
+{
+    $fjdboper = new FjItemDBOper(array());
+    $selectsql = "select * from fjzt limit 10;";
+    $fjdboper->query($selectsql);
+    $fjdboper->queryTotalCount();
+}
+testfjzt();

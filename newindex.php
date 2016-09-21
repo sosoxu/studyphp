@@ -8,4 +8,5 @@
 ?>
 <?php require 'header.php' ?>
 <?php require 'title.php' ?>
+<?php require 'fjzttable.php' ?>
 <?php require 'bottom.php' ?>
