@@ -15,7 +15,14 @@ require 'fjzt.php';
     </tr>
     <?php
     $fjdboper = new FjItemDBOper(array());
-    $fjItems = $fjdboper->queryFullItem();
+    $rowcnt = $fjdboper->queryTotalCount();
+    $rowcnt = (int)$rowcnt[0];
+    $apagerow = 10;
+    $dispages = 10;
+    $curIndex = isset($_GET['page']) ? $_GET['page'] : 1;
+    $start = ($curIndex - 1) * $apagerow + 1;
+    $end = $curIndex * $apagerow > $rowcnt ? $rowcnt : $curIndex * $apagerow;
+    $fjItems = $fjdboper->queryRangeItem($start, $end);
     foreach ($fjItems as $item)
     {
     ?>
@@ -31,12 +38,8 @@ require 'fjzt.php';
 <div id="pages">
     <?php
     //查询数量，一页20行，页数显示10
-    $rowcnt = 1000;
-    $apagerow = 10;
-    $dispages = 10;
-    $curIndex = 18;
     require 'tablepages.php';
     $url = $_SERVER['PHP_SELF'];
-    createTablePagesIndex(1000, 10, 10, 1, (string)$url);
+    createTablePagesIndex($rowcnt, $apagerow, $dispages, $curIndex, (string)$url);
     ?>
 </div>

@@ -156,8 +156,22 @@ class FjItemDBOper
         $sql = "SELECT count(*) FROM fjzt;";
         $result = mysqli_query($this->mysqli, $sql);
         $row = mysqli_fetch_row($result);
-        echo $row;
         return $row;
+    }
+
+    public function queryRangeItem($start, $end)
+    {
+        $selectsql = "select * from fjzt where id>=$start and id<=$end;";
+        echo $selectsql;
+        $rows = $this->query($selectsql);
+        $items = array();
+        foreach($rows as $row)
+        {
+            $fjitem = new FjItem();
+            $fjitem->buildItem($row);
+            $items[] = $fjitem;
+        }
+        return $items;
     }
 }
 
@@ -167,5 +181,6 @@ function testfjzt()
     $selectsql = "select * from fjzt limit 10;";
     $fjdboper->query($selectsql);
     $fjdboper->queryTotalCount();
+    echo count($fjdboper->queryRangeItem(2, 5));
 }
-testfjzt();
+//testfjzt();
