@@ -162,7 +162,7 @@ class FjItemDBOper
     public function queryRangeItem($start, $end)
     {
         $selectsql = "select * from fjzt where id>=$start and id<=$end;";
-        echo $selectsql;
+        //echo $selectsql;
         $rows = $this->query($selectsql);
         $items = array();
         foreach($rows as $row)

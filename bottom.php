@@ -16,5 +16,6 @@ $foot = '© 2001-2020 sosoxu Inc.';
     </span>
     <span id="footspan"><?php echo $foot ?></span>
 </div>
+<script type="text/javascript" src="js/fjzttable.js"></script>
 </body>
 </html>

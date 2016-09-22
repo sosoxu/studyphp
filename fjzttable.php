@@ -35,11 +35,4 @@ require 'fjzt.php';
     }
     ?>
 </table>
-<div id="pages">
-    <?php
-    //查询数量，一页20行，页数显示10
-    require 'tablepages.php';
-    $url = $_SERVER['PHP_SELF'];
-    createTablePagesIndex($rowcnt, $apagerow, $dispages, $curIndex, (string)$url);
-    ?>
-</div>
+
