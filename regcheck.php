@@ -24,7 +24,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'register')
             {
                 $insertsql = "INSERT INTO user(username, password) VALUES('$user', '$pwd');";
                 $insert_res = mysqli_query($mysqli, $insertsql);
-                if ($insertsql)
+                if ($insert_res)
                 {
                     echo "<script>alert('Success');</script>";
                 }
