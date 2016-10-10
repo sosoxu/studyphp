@@ -14,5 +14,6 @@ $htmltitle = 'DOTA2';
     <title><?php echo $htmltitle ?></title>
     <link type="text/css" rel="stylesheet" href="">
     <script type="text/javascript" src="http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+    <!--script type="text/javascript" src="js/jquery.min.js"></script-->
 </head>
 <body>
