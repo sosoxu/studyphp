@@ -2,8 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: sosoxu
- * Date: 2016/9/13
- * Time: 15:13
+ * Date: 16/9/19
+ * Time: 21:30
  */
 
 $user = $_COOKIE['username'];
@@ -15,4 +15,15 @@ if (isset($user) && isset($ckumd5) && $ckumd5 == $umd5)
 }
 else{
     echo "<p>"."failed to get cookies"."</p>";
+}
+
+if (isset($testval))
+{
+    $testval += 1;
+    echo $testval;
+}
+else
+{
+    $testval = 0;
+    echo $testval;
 }
