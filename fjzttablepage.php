@@ -14,7 +14,7 @@
     createTablePagesIndex($rowcnt, $apagerow, $dispages, $curIndex, (string)$url);
     ?>
 <?php
-$memcache = memcache_connect('192.168.1.2', 11211);
+$memcache = memcache_connect('localhost', 11211);
 //$memcache = memcache_connect('dota2', 11211);
 if ($memcache)
 {
