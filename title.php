@@ -34,12 +34,32 @@ else
 <?php else: ?>
 <div id="userlogin">
     <form class="login" method="post" action="logincheck.php">
-        name:<input type="text" name="username">
-        <br>
-        password:<input type="password" name="password">
-        <br>
-        <input type="submit" name="submit" value="login">
-        <a href="register.php">register</a>
+        <table border="0">
+        <tr>
+            <td>
+                name:
+            </td>
+            <td>
+                <input type="text" name="username">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                password:
+            </td>
+            <td>
+                <input type="password" name="password">
+            </td>
+        </tr>
+        <tr>
+           <td>
+               <input type="submit" name="submit" value="login">
+           </td>
+           <td>
+               <a href="register.php">register</a>
+           </td>
+        </tr>
+        </table>
     </form>
 </div>
 <?php endif;?>

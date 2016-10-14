@@ -1,6 +1,6 @@
 <?php
 //解决中文乱码，html编码设置为utf-8
-header("Content-type:text/html;charset=utf-8");
+//header("Content-type:text/html;charset=utf-8");
 /**
  * Created by PhpStorm.
  * User: sosoxu
