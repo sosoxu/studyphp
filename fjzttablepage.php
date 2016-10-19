@@ -17,6 +17,7 @@
 //try
 
     //windows下使用的是memcache,mac下使用的是redis
+    /*
     if (function_exists("memcache_connect"))
     {
         $memcache = memcache_connect('localhost', 11211);
@@ -45,6 +46,7 @@
             echo "Failed to connect to memcache";
         }
     }
+    */
 
     try
     {
