@@ -27,3 +27,10 @@ else
     $testval = 0;
     echo $testval;
 }
+
+?>
+<vidio width="800" height="600" controls>
+    <source src="img/11.mp4" type="video/mp4">
+</vidio>
+<embed src="img/11.mp4" type="audio/x-pn-realaudio-plugin" console="Clip1" controls="ControlPanel,StatusBar" height="330" width="450" autostart="true">
+</embed>
